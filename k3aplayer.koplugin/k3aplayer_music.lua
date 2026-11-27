@@ -22,7 +22,9 @@ local DataStorage = require("datastorage")
 local Device = require("device")
 local UIManager = require("ui/uimanager")
 local logger = require("logger")
-local _ = require("gettext")
+-- English only: KOReader's gettext would translate just the words its own catalog knows
+-- ("off", "About"…) and leave the rest in English, mixing two languages
+local _ = function(s) return s end
 local T = require("ffi/util").template
 
 math.randomseed(os.time())
@@ -220,8 +222,9 @@ local function absolute(path, base)
     return base .. "/" .. path:gsub("^%./", "")
 end
 
+--- Full path of the engine log (KOReader's data folder is often just "." on the Kindle).
 function Music.logPath()
-    return DataStorage:getDataDir() .. "/k3aplayer.log"
+    return absolute(DataStorage:getDataDir() .. "/k3aplayer.log", koreaderDir())
 end
 
 local function startEngine()

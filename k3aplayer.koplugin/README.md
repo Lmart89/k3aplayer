@@ -1,5 +1,7 @@
 # K3 Audio Player (k3aplayer.koplugin)
 
+Version 1.0 · made by lmart89 · github.com/Lmart89
+
 A music player plugin for KOReader on the **Kindle 3 (Kindle Keyboard)**. It plays the MP3 files in
 the Kindle's `music` folder through the Kindle's own audio stack (GStreamer 0.10), in a separate
 process, so the music keeps playing while you read.
@@ -19,6 +21,7 @@ Main menu → **Tools** → **Music player**:
 - **Music folder**: choose another folder (default `/mnt/us/music`).
 - **Music keys**: turn the global keys on or off.
 - **Player keys**: a summary of all keys.
+- **About**: app icon, version, author (lmart89) and GitHub address (github.com/Lmart89). Also in the player's Menu options.
 
 Global keys (when enabled):
 

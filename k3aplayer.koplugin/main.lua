@@ -17,7 +17,9 @@ local Dispatcher = require("dispatcher")
 local InfoMessage = require("ui/widget/infomessage")
 local UIManager = require("ui/uimanager")
 local WidgetContainer = require("ui/widget/container/widgetcontainer")
-local _ = require("gettext")
+-- English only: KOReader's gettext would translate just the words its own catalog knows
+-- ("off", "About"…) and leave the rest in English, mixing two languages
+local _ = function(s) return s end
 local T = require("ffi/util").template
 
 local Music = require("k3aplayer_music")
@@ -150,6 +152,13 @@ function K3APlayer:addToMainMenu(menu_items)
                 callback = function()
                     UIManager:show(InfoMessage:new{ text = require("k3aplayer_screens").KEYS_HELP,
                         monospace_font = true })
+                end,
+            },
+            {
+                text = _("About"),
+                keep_menu_open = true,
+                callback = function()
+                    UIManager:show(require("k3aplayer_about"):new{})
                 end,
             },
         },

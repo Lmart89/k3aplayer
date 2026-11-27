@@ -1,0 +1,3 @@
+# The Kindle needs LF line endings in scripts and code
+* text=auto eol=lf
+*.png binary

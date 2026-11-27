@@ -43,7 +43,9 @@ local VerticalGroup = require("ui/widget/verticalgroup")
 local VerticalSpan = require("ui/widget/verticalspan")
 local Widget = require("ui/widget/widget")
 local datetime = require("datetime")
-local _ = require("gettext")
+-- English only: KOReader's gettext would translate just the words its own catalog knows
+-- ("off", "About"…) and leave the rest in English, mixing two languages
+local _ = function(s) return s end
 local T = require("ffi/util").template
 local Mp3 = require("k3aplayer_mp3")
 local Music = require("k3aplayer_music")
@@ -1114,6 +1116,9 @@ function M.menu(player)
     end)
     option(I.keys, _("Player keys"), function()
         UIManager:show(InfoMessage:new{ text = M.KEYS_HELP, monospace_font = true })
+    end)
+    option("\u{F05A}", _("About"), function()
+        UIManager:show(require("k3aplayer_about"):new{})
     end)
     local Panel = require("k3aplayer_panel")
     UIManager:show(Panel:new{ title = _("Music options"), options = options, top = player.bar_height },
